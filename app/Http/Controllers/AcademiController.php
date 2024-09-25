@@ -18,7 +18,8 @@ class AcademiController extends Controller
     public function course_index ()
     {
         $courses = Course::get();
+        $programs = Program::pluck('name','id');
 
-        return view('academi.course.index')->with(['courses' => $courses]);
+        return view('academi.course.index')->with(['courses' => $courses,'programs' => $programs]);
     }
 }

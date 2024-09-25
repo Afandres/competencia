@@ -30,7 +30,10 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admin123')
           ]);
 
-        $role = Role::firstOrCreate(['name' => 'admin']);
+        $role = Role::updateOrCreate(['name' => 'admin'], [
+        'guard_name' => 'web'
+        ]);
+
 
         $user->assignRole($role);
     }

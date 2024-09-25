@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->integer('document_number')->unique();
             $table->enum('document_type',['Cédula de ciudadanía','Tarjeta de identidad','Cédula de extranjería']);
-            $table->integer('telephone');
+            $table->bigInteger('telephone');
             $table->string('email');
-            $table->string('address')->nullable;
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }
