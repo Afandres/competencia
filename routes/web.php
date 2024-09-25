@@ -7,6 +7,7 @@ use App\Http\Controllers\AcademiController;
 use App\Http\Controllers\monitoringController;
 
 use App\Http\Controllers\BicycleController;
+use App\Http\Controllers\eventController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -62,6 +63,17 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::get('/bicycle/edit/{id}', 'bicycle_edit')->name('bicycle.edit');
         Route::put('/bicycle/update/{id}', [BicycleController::class, 'bicycle_update'])->name('bicycle.update');
         Route::delete('/bicycle/destroy/{id}', 'bicycle_destroy')->name('bicycle.destroy');
+    });
+
+
+
+    Route::controller(eventController::class)->group(function () {
+        Route::get('/event/index', 'event_index')->name('event');
+        Route::get('/event/create', 'event_create')->name('EventCreate');
+        Route::post('/event/store', 'event_store')->name('eventStore');
+        Route::get('/event/edit/{id}', 'event_edit')->name('eventEdit');
+        Route::put('/event/update/{id}', [eventController::class, 'event_update'])->name('eventUpdate');
+        Route::delete('/event/destroy/{id}', 'event_destroy')->name('eventDestroy');
     });
 
 

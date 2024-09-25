@@ -220,6 +220,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-solid fa-map-location-dot"></i>
+                                <p>
+                                   Eventos
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('event') }}" class="nav-link ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Gestionar eventos</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('monitoringEvent') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Eventos activos</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-item menu-open">
                             <a href="" class="nav-link">
                                 <i class="nav-icon fa-solid fa-gear"></i>
