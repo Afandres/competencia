@@ -8,10 +8,10 @@ use App\Http\Controllers\monitoringController;
 
 use App\Http\Controllers\BicycleController;
 use App\Http\Controllers\eventController;
+use App\Http\Controllers\CatalogoController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[catalogoController::class,"showCatalogo"]);
+
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
 
