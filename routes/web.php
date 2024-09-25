@@ -17,6 +17,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
 
         Route::get('/user/index', 'index')->name('user.index');
 
+        Route::post('/logout', [UserController::class, 'destroy'])->name('logout');
+
     });
 
     Route::controller(AcademiController::class)->group(function () {

@@ -13,12 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
-    use HasFactory;
-    use HasProfilePhoto;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
-    use HasRoles;
+    use HasApiTokens, HasFactory, HasProfilePhoto, Notifiable, TwoFactorAuthenticatable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -26,10 +21,19 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'name_user',
         'email',
+        'person_id', // Clave foránea de la tabla 'people'
         'password',
     ];
+
+    /**
+     * Relación: un usuario pertenece a una persona.
+     */
+    public function person()
+    {
+        return $this->belongsTo(Person::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
