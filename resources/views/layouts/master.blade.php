@@ -10,13 +10,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SENABI</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+<!-- Imagen  -->
+  <link rel="shortcut icon" href="{{asset('img/logobike.png')}}" type="image/x-icon">
+>>>>>>> 9324213b4781caff065546ab6330eae196bb6e6b
 
     <script src="https://kit.fontawesome.com/dcb1bbced2.js" crossorigin="anonymous"></script>
 
@@ -96,11 +98,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <span class="brand-text font-weight-light">SENABI</span>
             </a>
 
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+
+        </div>
+        <div class="info">
+          <a href="#" class="d-block"></a>
+        </div>
+      </div>
 
                     </div>
                     <div class="info">
@@ -127,6 +136,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+
                         @role('admin')
                             <li class="nav-item menu-open">
                                 <a href="" class="nav-link ">
@@ -296,6 +306,115 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
             reserved.
         </footer>
+=======
+         @role('admin')
+         <li class="nav-item menu-open">
+            <a href="" class="nav-link ">
+              <i class="nav-icon fa-solid fa-gear"></i>
+              <p>
+                Academia
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('program.index')}}" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Programas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('course.index')}}" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Cursos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('apprentice.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Aprendices</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('official.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Funcionarios</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+         <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fa-solid fa-wrench"></i>
+              <p>
+                Parametros
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fa-solid fa-bicycle"></i>
+              <p>
+                Gestion de alquiler
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('bicycle.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Administrar bisis</p>
+                  </a>
+                </li>
+              </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa-solid fa-map-location-dot"></i>
+              <p>
+                Monitoreo
+              </p>
+            </a>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="" class="nav-link">
+              <i class="nav-icon fa-solid fa-gear"></i>
+              <p>
+                Seguridad
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('user.index')}}" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Usuarios</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Roles</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          @endrole
+          @role('aprendiz')
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Alquilar Bicicleta
+              </p>
+            </a>
+          </li>
+          @endrole
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+>>>>>>> 9324213b4781caff065546ab6330eae196bb6e6b
     </div>
     <!-- ./wrapper -->
 

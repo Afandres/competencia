@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AcademiController;
+
 use App\Http\Controllers\monitoringController;
+
+use App\Http\Controllers\BicycleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,6 +44,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::post('official/update', 'official_update')->name('official.update');
         Route::delete('official/destroy/{id}', 'official_destroy')->name('official.destroy');
 
+
     });
 
     Route::controller(monitoringController::class)->group(function () {
@@ -49,4 +53,16 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::get('/monitoring/event', 'index_event')->name('monitoringEvent');
 
     });
+
+
+    Route::controller(BicycleController::class)->group(function () {
+        Route::get('/bicycle/index', 'bicycle_index')->name('bicycle.index');
+        Route::get('/bicycle/create', 'bicycle_create')->name('bicycle.create');
+        Route::post('/bicycle/store', 'bicycle_store')->name('bicycle.store');
+        Route::get('/bicycle/edit/{id}', 'bicycle_edit')->name('bicycle.edit');
+        Route::put('/bicycle/update/{id}', [BicycleController::class, 'bicycle_update'])->name('bicycle.update');
+        Route::delete('/bicycle/destroy/{id}', 'bicycle_destroy')->name('bicycle.destroy');
+    });
+
+
 });
