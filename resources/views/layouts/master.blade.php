@@ -15,6 +15,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+<!-- Imagen  -->
+  <link rel="shortcut icon" href="{{asset('img/logobike.png')}}" type="image/x-icon">
 
   <script src="https://kit.fontawesome.com/dcb1bbced2.js" crossorigin="anonymous"></script>
 
@@ -91,7 +93,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          
+
         </div>
         <div class="info">
           <a href="#" class="d-block"></a>
@@ -164,8 +166,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="nav-icon fa-solid fa-bicycle"></i>
               <p>
                 Gestion de alquiler
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('bicycle.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Administrar bisis</p>
+                  </a>
+                </li>
+              </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -198,7 +209,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
-          
+
           @endrole
           @role('aprendiz')
           <li class="nav-item">
