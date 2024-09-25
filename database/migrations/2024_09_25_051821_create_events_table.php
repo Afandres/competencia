@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) { // Paréntesis cerrado aquí
             $table->id();
             $table->string('name');
             $table->text('description');
             $table->date('date');
-            $table->time('start_time');
+            $table->decimal('start_latitude', 9, 6)->nullable();
+            $table->decimal('start_longitude', 9, 6)->nullable();
+            $table->decimal('end_latitude', 9, 6)->nullable();
+            $table->decimal('end_longitude', 9, 6)->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('events'); // Cambiado para eliminar la tabla completa
     }
 };
