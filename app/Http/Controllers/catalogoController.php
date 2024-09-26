@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class catalogoController extends Controller
 {
-    public function showCatalogo()
+    public function index()
     {
         $items = Bicycle::all();
-        return view("catalogo",compact("items"));
+        return view('catalogo',compact("items"));
     }
 }

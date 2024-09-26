@@ -13,6 +13,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
    <!-- Google Font: Source Sans Pro -->
    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
+
+
    <!-- Font Awesome Icons -->
    <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
 
@@ -93,7 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
                 <i class="fa-solid fa-person-biking"></i>
-                <span class="brand-text font-weight-light">SENABI</span>
+                <span class="brand-text font-weight-light">SENABIC</span>
             </a>
             <!-- Sidebar -->
             <div class="sidebar">
@@ -153,7 +155,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('apprentice.index')}}" class="nav-link">
+                <a href="{{ route('apprentice.course_index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Aprendices</p>
                 </a>

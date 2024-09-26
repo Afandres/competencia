@@ -54,7 +54,7 @@ class UserController extends Controller
     {
         // Obtener los datos del request
         $input = $request->all();
-        
+
 
         // Validar los datos del formulario
         Validator::make($input, [
@@ -105,7 +105,6 @@ class UserController extends Controller
 
         try {
 
-            dd($validator);
 
             // Crear el registro en la tabla 'people'
             $person = Person::create([
@@ -140,12 +139,12 @@ class UserController extends Controller
     public function dashboard()
     {
         $user = Auth::user(); // Obtiene el usuario autenticado
-    
+
         // Verifica si el usuario está autenticado
         if (!$user) {
             return redirect()->route('login'); // Redirige a la página de inicio de sesión
         }
-    
+
         // Verifica los roles del usuario
         if ($user->hasRole('admin')) {
             return view('dashboard.dashboard_admin'); // Vista para administradores
@@ -156,7 +155,7 @@ class UserController extends Controller
         } else {
             return redirect()->route('login'); // Redirige si el usuario no tiene un rol válido
         }
-    }    
+    }
 
     public function index ()
     {

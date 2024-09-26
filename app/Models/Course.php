@@ -13,4 +13,9 @@ class Course extends Model
     {
         return $this->belongsTo(Program::class);
     }
+
+    public function apprentices()
+    {
+        return $this->hasMany(Apprentice::class);
+    }
 }

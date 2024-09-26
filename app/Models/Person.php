@@ -22,6 +22,7 @@ class Person extends Model
         'telephone',
         'email',
         'address',
+        'stratum',
     ];
 
     /**
@@ -32,4 +33,10 @@ class Person extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function apprentices()
+    {
+        return $this->hasMany(Apprentice::class);
+    }
+
 }

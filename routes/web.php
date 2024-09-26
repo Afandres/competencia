@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AcademiController;
-
+use App\Http\Controllers\ApprenticeController;
 use App\Http\Controllers\monitoringController;
 
 use App\Http\Controllers\BicycleController;
@@ -15,17 +15,15 @@ Route::get('/prueba',function(){
     return view("rent.show");
 });
 
-Route::get('/',[catalogoController::class,"showCatalogo"]);
+Route::get('/',[catalogoController::class,"index"]);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('/user/register/index', function () {
     return view('auth.register');
 })->name('user.register');
 
 Route::controller(UserController::class)->group(function () {
-    
+
     Route::post('/user/register/store', 'register_store')->name('user.register.store');
     Route::get('/user/register/search_person', 'search_person')->name('user.register.search_person');
 
@@ -34,7 +32,7 @@ Route::controller(UserController::class)->group(function () {
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
 
     Route::controller(UserController::class)->group(function () {
-    
+
         Route::get('/dashboard', 'dashboard')->name('dashboard');
 
         Route::get('/user/index', 'index')->name('user.index');
@@ -116,6 +114,21 @@ Route::post('/events/{id}/update-image', [EventController::class, 'updateImage']
         Route::put('/event/update/{id}', [eventController::class, 'event_update'])->name('eventUpdate');
         Route::delete('/event/destroy/{id}', 'event_destroy')->name('eventDestroy');
     });
+
+    Route::controller(ApprenticeController::class)->group(function(){
+
+        Route::get('/dashboard/apprentice','index')->name('apprentice.course_index');
+        Route::post('/dashboard/apprentice','store')->name('apprentice.course_store');
+        Route::post('dashboard/apprentice/create', [ApprenticeController::class ,'create'])->name('apprentice.course_create');
+        Route::put('dashboard/apprentice/{id}','update')->name('apprentice.course_update');
+
+
+        Route::delete('/apprentice/{id}', [ApprenticeController::class, 'destroy'])->name('apprentice.destroy');
+
+    });
+
+
+
 
 
 });
