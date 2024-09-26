@@ -24,6 +24,7 @@
                             <td>{{ $item->description }}</td>
                             <td>{{ $item->date }}</td>
                             <td>
+                                <a href="{{ route('addUbicacion', $item->id) }}"  class="btn btn-primary"><i class="fa-solid fa-map-location-dot"></i></a>
                                 <a href="{{ route('eventEdit', $item->id) }}"  class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></a>
                                 @csrf
                                 <form id="delete-form-{{ $item->id }}" action="{{ route('eventDestroy', $item->id) }}" method="POST" style="display: none;">

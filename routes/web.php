@@ -10,6 +10,11 @@ use App\Http\Controllers\BicycleController;
 use App\Http\Controllers\eventController;
 use App\Http\Controllers\CatalogoController;
 
+
+Route::get('/prueba',function(){
+    return view("rent.show");
+});
+
 Route::get('/',[catalogoController::class,"showCatalogo"]);
 
 Route::get('/', function () {
@@ -86,6 +91,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::get('/event/index', 'event_index')->name('event');
         Route::get('/event/create', 'event_create')->name('EventCreate');
         Route::post('/event/store', 'event_store')->name('eventStore');
+        Route::get('/add-ubicacion/{id}', [eventController::class, 'ubicacion'])->name('addUbicacion');
+        Route::post('/event/addUbicacionn', 'event_store_ubicacion')->name('addUbicacionStore');
         Route::get('/event/edit/{id}', 'event_edit')->name('eventEdit');
         Route::put('/event/update/{id}', [eventController::class, 'event_update'])->name('eventUpdate');
         Route::delete('/event/destroy/{id}', 'event_destroy')->name('eventDestroy');

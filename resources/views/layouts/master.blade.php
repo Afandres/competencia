@@ -88,7 +88,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
         </nav>
         <!-- /.navbar -->
-
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
@@ -96,8 +95,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="fa-solid fa-person-biking"></i>
                 <span class="brand-text font-weight-light">SENABI</span>
             </a>
-
-
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
