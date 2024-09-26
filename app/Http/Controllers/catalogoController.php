@@ -6,9 +6,17 @@ use Illuminate\Http\Request;
 
 class catalogoController extends Controller
 {
-    public function index()
-    {
-        $items = Bicycle::all();
-        return view('catalogo',compact("items"));
+
+
+    public function bicycle_index(){
+
+        $bicycles = Bicycle::all();
+        return view('catalogos.bisis', compact('bicycles'));
+    }
+
+    public function rental_index(){
+
+        $bicycles = Bicycle::get();
+        return view('rents.bicycle.rental', compact('bicycles'));
     }
 }

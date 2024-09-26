@@ -11,11 +11,11 @@ use App\Http\Controllers\eventController;
 use App\Http\Controllers\CatalogoController;
 
 
-Route::get('/prueba',function(){
-    return view("rent.show");
-});
 
-Route::get('/',[catalogoController::class,"index"]);
+
+
+Route::get('/bysicle/show',[catalogoController::class,"bicycle_index"])->name("catalogoBisis");
+
 
 
 Route::get('/user/register/index', function () {
