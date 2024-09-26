@@ -1,7 +1,8 @@
 <x-guest-layout>
     <x-authentication-card>
+
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <img src="{{ asset('img/logobike.jpeg') }}" width="20%" height="10%" alt="Logo" class="w-24 h-24 rounded-full object-cover mx-auto mb-4" /> <!-- Cambia el tamaño según lo necesites -->
         </x-slot>
 
         <x-validation-errors class="mb-4" />

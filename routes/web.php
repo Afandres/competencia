@@ -8,11 +8,14 @@ use App\Http\Controllers\monitoringController;
 use App\Http\Controllers\BicycleController;
 use App\Http\Controllers\eventController;
 use App\Http\Controllers\CatalogoController;
+use App\Models\Event;
+use Carbon\Carbon;
 
 Route::get('/bysicle/show',[catalogoController::class,"bicycle_index"])->name("catalogoBisis");
 
 Route::get('/', function () {
-    return view('welcome');
+    $events = Event::where('date', '>', Carbon::now())->get();
+    return view('welcome', compact('events'));
 });
 
 Route::get('/user/register/index', function () {
