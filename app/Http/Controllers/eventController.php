@@ -86,6 +86,30 @@ public function event_store_ubicacion(Request $request)
         return view('events.edit', compact('event'));
     }
 
+    public function showUpdateImageForm($id)
+{
+    $event = Event::findOrFail($id); // Asegúrate de que el evento existe
+    return view('events.imgForm', compact('event'));
+}
+public function updateImage(Request $request, $id)
+{
+    $request->validate([
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    $event = Event::findOrFail($id); // Asegúrate de que el evento existe
+
+    if ($request->hasFile('image')) {
+        // Almacena la imagen en 'public/images' y obtiene la ruta
+        $imagePath = $request->file('image')->store('images', 'public');
+
+        // Actualiza la ruta de la imagen en la base de datos
+        $event->image = $imagePath; // Asegúrate de que esta es la columna correcta en tu tabla
+        $event->save();
+    }
+
+    return redirect()->route('event')->with('success', 'Imagen actualizada con éxito');
+}
     /**
      * Update the specified resource in storage.
      */

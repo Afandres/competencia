@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('start_longitude', 9, 6)->nullable();
             $table->decimal('end_latitude', 9, 6)->nullable();
             $table->decimal('end_longitude', 9, 6)->nullable();
+            $table->string('image')->nullable(); // Campo para almacenar la imagen
             $table->timestamps();
         });
     }

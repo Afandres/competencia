@@ -105,6 +105,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::get('/event/create', 'event_create')->name('EventCreate');
         Route::post('/event/store', 'event_store')->name('eventStore');
         Route::get('/add-ubicacion/{id}', [eventController::class, 'ubicacion'])->name('addUbicacion');
+        // Ruta para mostrar el formulario de actualización de imagen (GET)
+Route::get('/events/{id}/form-update-image', [EventController::class, 'showUpdateImageForm'])->name('events.formUpdateImage');
+
+// Ruta para procesar el formulario de actualización de imagen (POST)
+Route::post('/events/{id}/update-image', [EventController::class, 'updateImage'])->name('events.updateImage');
+        Route::post('/events/{id}/update-image', [EventController::class, 'updateImage'])->name('events.updateImage');
         Route::post('/event/addUbicacionn', 'event_store_ubicacion')->name('addUbicacionStore');
         Route::get('/event/edit/{id}', 'event_edit')->name('eventEdit');
         Route::put('/event/update/{id}', [eventController::class, 'event_update'])->name('eventUpdate');
