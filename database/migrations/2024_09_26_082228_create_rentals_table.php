@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('person_id')->constrained()->onDelete('cascade');
             $table->foreignId('bicycle_id')->constrained()->onDelete('cascade');
             $table->date('date');
-            $table->time('start_time');
-            $table->time('end_time');
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
             $table->time('second_end_time')->nullable();
             $table->integer('price')->nullable();
             $table->enum('state',['Arquilada','Devuelta']);

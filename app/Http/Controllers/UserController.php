@@ -15,6 +15,8 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Str;
 use PasswordValidationRules;
+use App\Models\Event;
+use Carbon\Carbon;
 
 class UserController extends Controller
 
@@ -153,9 +155,11 @@ class UserController extends Controller
         if ($user->hasRole('admin')) {
             return view('dashboard.dashboard_admin'); // Vista para administradores
         } elseif ($user->hasRole('aprendiz')) {
-            return view('dashboard.dashboard_apprentice'); // Vista para usuarios regulares
+            $events = Event::where('date', '>', Carbon::now())->get();
+            return view('dashboard.dashboard_apprentice', compact('events')); // Vista para usuarios regulares
         } elseif ($user->hasRole('funcionario')) {
-            return view('dashboard.dashboard_official'); // Vista para usuarios regulares
+            $events = Event::where('date', '>', Carbon::now())->get();
+            return view('dashboard.dashboard_official', compact('events')); // Vista para usuarios regulares
         } else {
             return redirect()->route('login'); // Redirige si el usuario no tiene un rol válido
         }

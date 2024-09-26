@@ -120,6 +120,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::get('/event/edit/{id}', 'event_edit')->name('eventEdit');
         Route::put('/event/update/{id}', [eventController::class, 'event_update'])->name('eventUpdate');
         Route::delete('/event/destroy/{id}', 'event_destroy')->name('eventDestroy');
+
+        Route::get('/event/participate/{id}', 'event_participate')->name('event.participate');
     });
 
 

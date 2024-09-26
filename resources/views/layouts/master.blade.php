@@ -37,7 +37,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: #287d38;">
     <!-- Left navbar links -->
@@ -357,7 +356,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- Main Footer -->
 <footer class="bg-green-field text-white text-center py-4" style="margin-left: 50px">
-  <div class="container d-flex flex-column align-items-center justify-content-center">
+  <div class="container d-flex flex-column align-items-center justify-content-center con">
       <h5>Servicio Nacional de Aprendizaje - SENA</h5>
       <p>
           Formamos profesionales competentes para el desarrollo del país.
@@ -373,8 +372,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </footer>
 
 <style>
+  
   footer {
       background-color: #287d38; /* Color verde de campo */
+  }
+
+  .con{
+    margin-left: 200px;
   }
   .social-icons {
       display: flex; /* Usar flexbox para centrar los íconos */
@@ -400,7 +404,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
 
@@ -410,7 +414,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             icon: 'success',
             title: '{{ session('success') }}',
             showConfirmButton: true,
-            timer: 1500,
             customClass: {
                 popup: 'my-custom-popup-class',
             },
@@ -424,7 +427,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             icon: 'error',
             title: {!! json_encode(session('error')) !!},
             showConfirmButton: true,
-            timer: 15000,
             customClass: {
                 popup: 'my-custom-popup-class',
             },

@@ -131,7 +131,7 @@ class BicycleController extends Controller
         $bicycle->state = 'Inactiva';
         $bicycle->save();
     
-        return redirect()->route('rental.index')->with('success', 'Bicicleta Arquilada');
+        return redirect()->route('rental.index')->with('success', 'Bicicleta Arquilada.  El precio final es: ' . $final_price . ' pesos.');
     }
     
     public function rental_devolution($bicycle_id) {
@@ -202,7 +202,7 @@ class BicycleController extends Controller
         $bicycle->save();
     
         // Redirigir con mensaje de éxito
-        return redirect()->route('rental.index')->with('success', 'Bicicleta devuelta con éxito. Cargo adicional aplicado con descuento si corresponde.');
+        return redirect()->route('rental.index')->with('success', 'Bicicleta devuelta con éxito. Cargo adicional aplicado con descuento si corresponde.  El precio final es: ' . $final_price . ' pesos.');
     }
 
     public function rental_invoices()

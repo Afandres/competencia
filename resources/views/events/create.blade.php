@@ -46,6 +46,26 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="mb-3 row">
+                        <label for="start_time" class="col-sm-2 col-form-label text-nowrap">Hora Inicio</label>
+                        <div class="col-sm-10">
+                            <input type="time" name="start_time" id="start_time" required
+                                class="form-control @error('start_time') is-invalid @enderror">
+                            @error('start_time')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="end_time" class="col-sm-2 col-form-label text-nowrap">Hora Fin</label>
+                        <div class="col-sm-10">
+                            <input type="time" name="end_time" id="end_time" required
+                                class="form-control @error('end_time') is-invalid @enderror">
+                            @error('end_time')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
 
                    <input type="submit" value="Crear" class="btn btn-primary">
 
