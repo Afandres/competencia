@@ -12,8 +12,8 @@
                         <th>Marca</th>
                         <th>Color</th>
                         <th>Estado</th>
-                        <th># Precio x Hora</th>
-                        <th><a href="{{route('bicycle.create')}}" class="btn btn-success">Agregar</a></th>
+                        <th>Precio x Hora</th>
+                        <th><a href="{{route('bicycle.create')}}" class="btn btn-success"><i class="fa-solid fa-plus"></i></a></th>
                         @csrf
                     </tr>
                 </thead>
@@ -26,14 +26,14 @@
                             <td>{{ $bicycle->state }}</td>
                             <td>{{ $bicycle->rental_price }}</td>
                             <td>
-                                <a href="{{ route('bicycle.edit', $bicycle->id) }}"  class="btn btn-primary">Editar</a>
+                                <a href="{{ route('bicycle.edit', $bicycle->id) }}"  class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></a>
                                 @csrf
                                 <form id="delete-form-{{ $bicycle->id }}" action="{{ route('bicycle.destroy', $bicycle->id) }}" method="POST" style="display: none;">
                                     @csrf
                                     @method('DELETE')
                                 </form>
                                 <a href="#" class="btn btn-danger" onclick="if(confirm('¿Estás seguro de que deseas eliminar esta bicicleta?')) { event.preventDefault(); document.getElementById('delete-form-{{ $bicycle->id }}').submit(); }">
-                                    Eliminar
+                                    <i class="fa-solid fa-trash"></i>
                                 </a>
                             </td>
                         </tr>

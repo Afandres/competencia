@@ -13,7 +13,11 @@
                             <th>Codigo</th>
                             <th># Trimestres</th>
                             <th>Modalidad</th>
-                            <th><a href="" class="btn btn-success">Agregar</a></th>
+                            <th>
+                                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#crearprograma">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,8 +29,16 @@
                                 <td>{{ $program->quarter_number }}</td>
                                 <td>{{ $program->modality }}</td>
                                 <td>
-                                    <a href="" class="btn btn-primary">Editar</a>
-                                    <a href="" class="btn btn-danger">Eliminar</a>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarprograma_{{ $program->id }}">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                    <button class="btn btn-danger " onclick="if(confirm('¿Estás seguro de que deseas eliminar este programa?')) { event.preventDefault(); document.getElementById('delete-form-{{ $program->id }}').submit(); }">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                    <form id="delete-form-{{ $program->id }}" action="{{ route('program.destroy', $program->id) }}" method="POST" style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -35,7 +47,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal Actividad -->
+    <!-- Modal Programa -->
     <div class="modal fade" id="crearprograma" tabindex="-1" aria-labelledby="crearprograma" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -75,7 +87,7 @@
     </div>
 
 
-    <!-- Modal de Edición Actividad -->
+    <!-- Modal de Edición Programa -->
     @foreach ($programs as $program)
     <div class="modal fade" id="editarprograma_{{ $program->id }}" tabindex="-1" aria-labelledby="editarprograma_" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -87,7 +99,6 @@
                 <div class="modal-body">
                     <form action="/program/update/{{ $program->id }}" method="POST">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="_method" value="PUT">
                         <div class="form-group">
                             <label for="name">Nombre</label>
                             <input type="text" name="name" class="form-control" value="{{ $program->name }}" required>
@@ -109,7 +120,7 @@
                             </select>
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-primary">Actualizar Actividad</button>
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
                     </form>
                 </div>
             </div>
