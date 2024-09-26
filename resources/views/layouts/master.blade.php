@@ -243,8 +243,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          <li class="nav-item d-flex justify-content-center text-center mt-5">
+            <a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Cerrar sesión
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
