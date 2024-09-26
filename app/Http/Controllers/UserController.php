@@ -149,9 +149,9 @@ class UserController extends Controller
         if ($user->hasRole('admin')) {
             return view('dashboard.dashboard_admin'); // Vista para administradores
         } elseif ($user->hasRole('aprendiz')) {
-            return view('dashboard.dashboard_apprentice'); // Vista para usuarios regulares
+            return view('dashboard.dashboard_apprentice'); // Vista para usuarios aprendices
         } elseif ($user->hasRole('funcionario')) {
-            return view('dashboard.dashboard_official'); // Vista para usuarios regulares
+            return view('dashboard.dashboard_official'); // Vista para usuarios funcionarios
         } else {
             return redirect()->route('login'); // Redirige si el usuario no tiene un rol válido
         }

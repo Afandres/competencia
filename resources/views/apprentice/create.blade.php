@@ -9,31 +9,39 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('apprentice.course_create') }}" method="POST">
+                <form action="{{ route('apprentices.store') }}" method="POST">
                     @csrf
 
-                    <!-- Campo Nombre -->
+                    <!-- Seleccionar Persona -->
                     <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" name="name" class="form-control" placeholder="Ingrese el nombre" required>
-                    </div>
-
-                    <!-- Campo Curso -->
-                    <div class="form-group">
-                        <label for="code">Curso</label>
-                        <input type="text" name="code" id="code" class="form-control" placeholder="Ingrese el curso" required>
-                    </div>
-
-                    <!-- Campo Estado -->
-                    <div class="form-group">
-                        <label for="state">Estado</label>
-                        <select name="state" id="state" class="form-control" required>
-                            <option value="Activo">Formación</option>
-                            <option value="Inactivo">Retirado</option>
+                        <label for="person_id">Nombre</label>
+                        <select name="person_id" class="form-control" required>
+                            @foreach($apprentices as $apprentices)
+                                <option value="{{ $apprentice->id }}">{{ $apprentice->name }}</option>
+                            @endforeach
                         </select>
                     </div>
-                    <br>
 
+                    <!-- Seleccionar Curso -->
+                    <div class="form-group">
+                        <label for="course_id">Curso</label>
+                        <select name="course_id" class="form-control" required>
+                            @foreach($courses as $course)
+                                <option value="{{ $course->id }}">{{ $course->code }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Seleccionar Estado -->
+                    <div class="form-group">
+                        <label for="state">Estado</label>
+                        <select name="state" class="form-control" required>
+                            <option value="EN FORMACIÓN">Formación</option>
+                            <option value="RETIRADO">Retirado</option>
+                        </select>
+                    </div>
+
+                    <br>
                     <button type="submit" class="btn btn-success">Crear Aprendiz</button>
                 </form>
             </div>

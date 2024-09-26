@@ -1,16 +1,6 @@
 @extends('welcome')
 
 @section('content')
-
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .card-img-top {
-            height: 200px;
-            object-fit: cover;
-        }
-    </style>
-
     <div class="container mt-5 mx-auto">
         <h1 class="text-center mb-4">Catálogo de Productos</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -34,4 +24,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 
-@endsection
+

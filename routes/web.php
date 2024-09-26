@@ -11,10 +11,6 @@ use App\Http\Controllers\eventController;
 use App\Http\Controllers\CatalogoController;
 
 
-Route::get('/prueba',function(){
-    return view("rent.show");
-});
-
 Route::get('/',[catalogoController::class,"index"]);
 
 
@@ -117,18 +113,10 @@ Route::post('/events/{id}/update-image', [EventController::class, 'updateImage']
 
     Route::controller(ApprenticeController::class)->group(function(){
 
-        Route::get('/dashboard/apprentice','index')->name('apprentice.course_index');
-        Route::post('/dashboard/apprentice','store')->name('apprentice.course_store');
-        Route::post('dashboard/apprentice/create', [ApprenticeController::class ,'create'])->name('apprentice.course_create');
-        Route::put('dashboard/apprentice/{id}','update')->name('apprentice.course_update');
+        Route::get('dashboard/apprentices',  'index')->name('apprentices.index');
+        Route::post('dashboard/apprentices', 'store')->name('apprentices.store');
 
-
-        Route::delete('/apprentice/{id}', [ApprenticeController::class, 'destroy'])->name('apprentice.destroy');
 
     });
-
-
-
-
 
 });
