@@ -159,7 +159,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('apprentice.index')}}" class="nav-link">
+                <a href="{{ route('inicio_aprendiz')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Aprendices</p>
                 </a>

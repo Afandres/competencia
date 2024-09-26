@@ -38,6 +38,14 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
 
     });
 
+    Route::controller(ApprenticeController::class)->group(function(){
+
+        Route::get('/inicio-aprendiz', [ApprenticeController::class, 'index'])->name('inicio_aprendiz');
+        Route::post('dashboard/apprentices/store',[ApprenticeController::class, 'store'])->name('apprentices.store');
+
+
+    });
+
     Route::controller(AcademiController::class)->group(function () {
 
         Route::get('/program/index', 'program_index')->name('program.index');
@@ -111,12 +119,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::delete('/event/destroy/{id}', 'event_destroy')->name('eventDestroy');
     });
 
-    Route::controller(ApprenticeController::class)->group(function(){
 
-        Route::get('dashboard/apprentices',  'index')->name('apprentices.index');
-        Route::post('dashboard/apprentices', 'store')->name('apprentices.store');
-
-
-    });
 
 });
