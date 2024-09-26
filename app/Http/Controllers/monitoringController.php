@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Rental;
 
 
 class monitoringController extends Controller
@@ -13,7 +14,9 @@ class monitoringController extends Controller
      */
     public function index_bisicle()
     {
-        return view("monitoring.bisicle");
+        // Obtener las bicicletas alquiladas
+        $rentals = Rental::with('bicycle','person')->where('state', 'Arquilada')->get();
+        return view("monitoring.bisicle")->with(['rentals' => $rentals]);
     }
 
     public function index_event()

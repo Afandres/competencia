@@ -120,6 +120,10 @@ class BicycleController extends Controller
         $rental->end_time = $end_time;
         $rental->state = 'Arquilada';
         $rental->price = $final_price;
+        $rental->start_latitude = $request->startLatitude;
+        $rental->start_longitude = $request->startLongitude;
+        $rental->end_latitude = $request->endLatitude;
+        $rental->end_longitude = $request->endLongitude;
         $rental->save();
 
         $bicycle = Bicycle::find($bicycle_id);
