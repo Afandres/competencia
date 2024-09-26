@@ -13,13 +13,14 @@ class Apprentice extends Model
     protected $fillable = [
         'person_id',
         'course_id',
+        'state',
     ];
 
     /**
      * Relación con el modelo Person.
      * Un aprendiz pertenece a una persona.
      */
-    
+
     public function person()
     {
         return $this->belongsTo(Person::class);

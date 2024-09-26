@@ -17,8 +17,9 @@ class ApprenticeController extends Controller
     public function index() {
 
         $apprentices = Apprentice::get();
+        $courses = Course::get();
 
-        return view('apprentice.index', compact('apprentices'));
+        return view('apprentice.index', compact('apprentices', 'courses'));
     }
 
     public function store(Request $request){
@@ -62,50 +63,8 @@ class ApprenticeController extends Controller
     }
 
         // Redirigir a la lista de aprendices con un mensaje de éxito
-        return redirect()->route('apprentice.course')->with('success', 'Aprendiz creado exitosamente');
+        return redirect()->route('apprentice.index')->with('success', 'Aprendiz creado exitosamente');
     }
 
-    public function update(Request $request, $id)
-    {
-        // Validación y lógica de actualización
-        $apprentice = Apprentice::findOrFail($id);
-        $apprentice->person->update($request->all());
-
-        return redirect()->route('apprentice.course')->with(['success' , 'Aprendiz actualizado exitosamente']);
-    }
-
-    public function create(Request $request)
-    {
-
-        $validator = Validator::make($request->all(), [
-            'person_id' => 'required|exists:people,id',
-            'course_id' => 'required|exists:courses,id',
-            'state' => 'required|in:EN FORMACIÓN,RETIRADO',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        Apprentice::create([
-            'person_id' => $request->person_id, // Asegúrate de obtener este valor
-            'course_id' => $request->course_id,
-            'state' => $request->state,
-        ]);
-    }
-
-
-    public function destroy($id)
-    {
-        try {
-
-            $apprentice = Apprentice::findOrFail($id);
-            $apprentice->delete(); // También eliminar los datos relacionados si es necesario
-
-         return response()->json(['message' => 'Aprendiz eliminado exitosamente']);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Error al eliminar el aprendiz'], 500);
-        }
-    }
 
 }

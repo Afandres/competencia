@@ -9,6 +9,14 @@ class Course extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'code',
+        'start_date',
+        'end_date',
+        'state',
+        'program_id'
+    ];
+
     public function program ()
     {
         return $this->belongsTo(Program::class);

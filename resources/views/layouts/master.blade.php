@@ -39,7 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: #5A9B3A;">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -91,7 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4"    >
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
                 <i class="fa-solid fa-person-biking"></i>
@@ -155,7 +155,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('apprentice.course_index')}}" class="nav-link">
+                <a href="{{ route('apprentice.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Aprendices</p>
                 </a>
@@ -334,15 +334,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- /.control-sidebar -->
 
 <!-- Main Footer -->
-<footer class="main-footer">
-    <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-        Anything you want
+<footer class="bg-green-field text-white text-center py-4">
+    <div class="container">
+        <h5>Servicio Nacional de Aprendizaje - SENA</h5>
+        <p>
+            Formamos profesionales competentes para el desarrollo del país.
+            <br> Cali, Colombia
+        </p>
+        <div class="social-icons mb-3">
+            <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p class="mt-3">&copy; 2024 SENA. Todos los derechos reservados.</p>
     </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
 </footer>
+
+<style>
+    footer {
+        background-color: #5A9B3A; /* Color verde de campo */
+    }
+    .social-icons a {
+        font-size: 20px; /* Tamaño de íconos */
+        transition: color 0.3s; /* Efecto de transición */
+    }
+    .social-icons a:hover {
+        color: #FFCC00; /* Color amarillo para el hover */
+    }
+</style>
+
 </div>
 </div>
 <!-- ./wrapper -->

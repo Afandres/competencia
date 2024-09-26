@@ -16,13 +16,12 @@ class Person extends Model
      */
     protected $fillable = [
         'name',
-        'name_user',
         'document_type',
         'document_number',
         'telephone',
         'email',
-        'address',
         'stratum',
+        'address'
     ];
 
     /**
@@ -34,9 +33,9 @@ class Person extends Model
         return $this->hasMany(User::class);
     }
 
-    public function apprentices()
+    public function apprentice()
     {
-        return $this->hasMany(Apprentice::class);
+        return $this->hasOne(Apprentice::class);
     }
 
 }
