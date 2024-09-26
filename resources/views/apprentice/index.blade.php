@@ -1,98 +1,83 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container">
-        <h2>Aprendices</h2>
-        <div class="card">
-            <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Curso</th>
-                            <th>Estado</th>
-                            <th>
-                                <!-- Botón que abre el modal de crear -->
-                                <a data-bs-toggle="modal" data-bs-target="#createApprenticeModal">
-                                    <b class="text-success" data-toggle="tooltip" data-placement="top" title="Agregar Aprendiz">
-                                        <i class="fas fa-plus"></i>
-                                 </b>
-                                </a>
-                                @include('apprentice.create')
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($apprentices as $apprentice)
-                            <tr>
-                                <td>{{ $apprentice->id }}</td>
-                                <td>{{ $apprentice->person->name}}</td>
-                                <td>{{ $apprentice->course->program->code }}</td>
-                                <td>{{ $apprentice->state }}</td>
-                                <td>
-                                    <!-- Botón de editar que abre el modal -->
-                                    <a data-bs-toggle="modal" data-bs-target="#editapprentice{{$apprentice->id}}">
-                                        <b class="text-primary" data-toggle="tooltip" data-placement="top" title="Actualizar Aprendiz">
-                                            <i class="fas fa-edit"></i>
-                                        </b>
-                                    </a>
-                                    @include('apprentice.edit')
+
+<div class="container">
+    <h1>Registrar Aprendiz</h1>
+    <div class="card">
+        <div class="card-body">
+            <form action="{{route('apprentices.store')}}" method="POST">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                <!-- Campo Nombre -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Ingrese el nombre" required>
+                </div>
+
+                <!-- Campo  Tipo de Documento -->
+                <div class="mb-3">
+                    <label for="document_type" class="form-label">Tipo de Documento</label>
+                    <select name="document_type" class="form-select" id="document_type">
+                        <option selected>Selecione su documento</option>
+                        <option value="Tarjeta de identidad">Tarjeta de Identidad</option>
+                        <option value="Cédula de ciudadanía">Cédula de Cuidadanía</option>
+                        <option value="Cédula de extranjería">Cédula Extranjera</option>
+                 </select>
+                </div>
 
 
-                                    <!-- Botón de eliminar con JavaScript -->
-                                    <a class="delete-apprentice" data-apprentice-id="{{ $apprentice->id }}">
-                                        <b class="text-danger" data-toggle="tooltip" data-placement="top" title="Eliminar Aprendiz">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </b>
-                                    </a>
-                                </td>
+                <!-- Campo Número de Documento -->
+                <div class="mb-3">
+                    <label for="document_number" class="form-label">Número de Documento</label>
+                    <input type="number" name="document_number" class="form-control" id="document_number" placeholder="Ingrese el número de documento" required>
+                </div>
 
-                            </tr>
+                <!-- Campo  Telefono -->
+                <div class="mb-3">
+                    <label for="telephone" class="form-label">Telefono</label>
+                    <input type="number" name="telephone" class="form-control" id="telephone" placeholder="Ingrese el numero de telefono" required>
+                </div>
+
+                <!-- Campo  Email-->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo Electronico</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Ingrese el Correo Electronico" required>
+                </div>
+
+                <!-- Campo  Dirección-->
+                <div class="mb-3">
+                    <label for="addres" class="form-label">Dirección</label>
+                    <input type="text" name="address" class="form-control" id="address" placeholder="Ingrese la dirección" required>
+                </div>
+
+                <!-- Campo  Curso-->
+                <div class="mb-3">
+                    <label for="course_id" class="form-label">Curso</label>
+                    <select name="course_id" class="form-select" id="course_id">
+                        <option selected>Seleccione un curso</option>
+                        @foreach ($courses as $course)
+                            <option value="{{ $course->id }}">{{ $course->code }}</option>
                         @endforeach
-                    </tbody>
-                </table>
-            </div>
+                    </select>
+                </div>
+
+                <!-- Campo  Estado -->
+                <div class="form-group">
+                    <label for="state">Estado</label>
+                    <select name="state" class="form-control">
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
+                </div>
+
+                <!-- Botón de enviar -->
+                <button type="submit" class="btn btn-primary">Agregar</button>
+
+            </form>
         </div>
     </div>
+</div>
 
-    <script>
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $(document).ready(function(){
-            // Eliminar aprendiz con confirmación de JavaScript
-            $('.delete-apprentice').on('click', function(e){
-                e.preventDefault();
-                var apprenticeId = $(this).data('apprentice-id');
-                var url = '/apprentice/' + apprenticeId;
-
-                if(confirm('¿Estás seguro de que quieres eliminar este aprendiz?')) {
-                    $.ajax({
-                        url: url,
-                        type: 'DELETE',
-                        data: {
-                            "_token": "{{ csrf_token() }}",
-                        },
-                        success: function(response) {
-                            alert('Aprendiz eliminado exitosamente');
-                            // Puedes eliminar la fila de la tabla o recargar la página si lo prefieres.
-                            location.reload();
-                        },
-                        error: function(xhr) {
-                            alert('Hubo un error al eliminar el aprendiz');
-                        }
-                    });
-                }
-            });
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 @endsection
-
-
