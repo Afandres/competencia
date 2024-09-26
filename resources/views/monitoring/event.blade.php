@@ -17,12 +17,12 @@
             <div class="col-md-4">
                 <h2>Lista de Eventos</h2>
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action">Evento 1</a>
-                    <a href="#" class="list-group-item list-group-item-action">Evento 2</a>
-                    <a href="#" class="list-group-item list-group-item-action">Evento 3</a>
-                    <a href="#" class="list-group-item list-group-item-action">Evento 4</a>
-                    <a href="#" class="list-group-item list-group-item-action">Evento 5</a>
-                    <a href="#" class="list-group-item list-group-item-action">Evento 6</a>
+                    @forelse ($items as $item)
+                        <a href="#?start_latitude={{$item->start_latitude}}&start_longitude={{$item->start_longitude}}&end_latitude={{$item->end_latitude}}&end_longitude={{$item->end_longitude}}" class="list-group-item list-group-item-action">{{$item->name}}</a>
+                    @empty
+                        <p>No existen eventos registrados</p>
+                    @endforelse
+
                 </div>
             </div>
 
@@ -61,7 +61,9 @@
 
                                 if (!startMarker) {
                                     // Si no hay un marcador de inicio, crea uno
-                                    startMarker = L.marker(coords, { icon: bikeIcon }).addTo(map);
+                                    startMarker = L.marker(coords, {
+                                        icon: bikeIcon
+                                    }).addTo(map);
                                 } else if (!endMarker) {
                                     // Si ya hay un marcador de inicio, crea uno de fin
                                     endMarker = L.marker(coords).addTo(map);
@@ -72,7 +74,9 @@
                                     // Si ambos marcadores existen, reinicia
                                     map.removeLayer(startMarker);
                                     map.removeLayer(endMarker);
-                                    startMarker = L.marker(coords, { icon: bikeIcon }).addTo(map);
+                                    startMarker = L.marker(coords, {
+                                        icon: bikeIcon
+                                    }).addTo(map);
                                     endMarker = null; // Reinicia el marcador de fin
                                 }
                             });
@@ -111,7 +115,9 @@
                                     map.removeLayer(movingMarker); // Elimina el marcador de movimiento anterior
                                 }
 
-                                movingMarker = L.marker(routeCoords[0], { icon: bikeIcon }).addTo(map); // Crea el marcador en la posición inicial
+                                movingMarker = L.marker(routeCoords[0], {
+                                    icon: bikeIcon
+                                }).addTo(map); // Crea el marcador en la posición inicial
 
                                 const stepTime = 100; // Tiempo entre pasos en milisegundos
                                 let step = 0;
@@ -122,7 +128,10 @@
                                         return;
                                     }
 
-                                    const { lat, lng } = routeCoords[step];
+                                    const {
+                                        lat,
+                                        lng
+                                    } = routeCoords[step];
                                     movingMarker.setLatLng([lat, lng]); // Mover el marcador a la nueva posición
                                     step++;
                                 }, stepTime);

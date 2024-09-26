@@ -163,6 +163,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Funcionarios</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('event')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Eventos</p>
+                </a>
+              </li>
             </ul>
           </li>
          <li class="nav-item">
@@ -192,11 +198,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa-solid fa-map-location-dot"></i>
+                <i class="nav-icon fa-solid fa-bicycle"></i>
               <p>
                 Monitoreo
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('monitoringBisicles')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>bisis activas</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('monitoringEvent')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>eventos</p>
+                  </a>
+                </li>
+              </ul>
           </li>
           <li class="nav-item menu-open">
             <a href="" class="nav-link">
@@ -243,7 +264,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
-    </div>
+
     <!-- /.sidebar -->
     </aside>
 
@@ -278,7 +299,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 </div>
 <!-- ./wrapper -->
-
+</div>
 <!-- REQUIRED SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>

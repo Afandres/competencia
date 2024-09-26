@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Event;
+
 
 class monitoringController extends Controller
 {
@@ -16,7 +18,8 @@ class monitoringController extends Controller
 
     public function index_event()
     {
-        return view("monitoring.event");
+        $items = Event::all();
+        return view("monitoring.event",compact("items"));
     }
 
     public function show(string $id)
