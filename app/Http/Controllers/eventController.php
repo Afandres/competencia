@@ -36,16 +36,38 @@ class eventController extends Controller
         'name' => $request->name,
         'description' => $request->description,
         'date' => $request->date,
-        'start_latitude' => $request->startLatitude,
-        'start_longitude' => $request->startLongitude,
-        'end_latitude' => $request->endLatitude,
-        'end_longitude' => $request->endLongitude,
+        'start_latitude' => null,
+        'start_longitude' => null,
+        'end_latitude' => null,
+        'end_longitude' => null,
     ]);
 
     // Redirigir a la vista de índice con un mensaje de éxito
     return redirect()->route('event')->with('success', 'Nuevo evento registrado con éxito');
 }
 
+
+public function ubicacion($id)
+{
+    return view("events.addUbicacion",compact("id"));
+}
+
+public function event_store_ubicacion(Request $request)
+{
+    // Buscar el evento por ID
+    $event = Event::findOrFail($request->id);
+
+    // Actualizar el evento con los datos del formulario
+    $event->update([
+        'start_latitude' => $request->startLatitude,
+        'start_longitude' => $request->startLongitude,
+        'end_latitude' => $request->endLatitude,
+        'end_longitude' => $request->endLongitude,
+    ]);
+
+    // Redirigir a la lista de eventos con un mensaje de éxito
+    return redirect()->route('event')->with('success', 'Evento actualizado con éxito');
+}
     /**
      * Display the specified resource.
      */
@@ -79,10 +101,7 @@ class eventController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'date' => $request->date,
-            'start_latitude' => $request->start_latitude,
-            'start_longitude' => $request->start_longitude,
-            'end_latitude' => $request->end_latitude,
-            'end_longitude' => $request->end_longitude,
+            
         ]);
 
         // Redirigir a la lista de eventos con un mensaje de éxito

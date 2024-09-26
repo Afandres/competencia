@@ -18,10 +18,13 @@
                 <h2>Lista de Eventos</h2>
                 <div class="list-group">
                     @forelse ($items as $item)
-                        <a href="event?start_latitude={{ $item->start_latitude }}&start_longitude={{ $item->start_longitude }}&end_latitude={{ $item->end_latitude }}&end_longitude={{ $item->end_longitude }}"
-                            class="list-group-item list-group-item-action">{{ $item->name }}</a>
+                        @if ($item->start_latitude != null)
+                            <a href="event?start_latitude={{ $item->start_latitude }}&start_longitude={{ $item->start_longitude }}&end_latitude={{ $item->end_latitude }}&end_longitude={{ $item->end_longitude }}"
+                                class="list-group-item list-group-item-action">{{ $item->name }}</a>
+                        @else
+                        <p class="list-group-item list-group-item-action">{{ $item->name }} -- no tiene ubicacion </p>
+                        @endif
                     @empty
-                        <p>No existen eventos registrados</p>
                     @endforelse
 
                 </div>
@@ -45,15 +48,15 @@
                             const ICON_ANCHOR = [16, 32];
                             const POPUP_ANCHOR = [0, -32];
                             const STEP_TIME = 100; // Tiempo entre pasos en milisegundos
-                        
+
                             const map = L.map('map').setView(MAP_CENTER, ZOOM_LEVEL); // Configura el mapa
-                        
+
                             // Capa de mosaico
                             L.tileLayer(TILE_LAYER_URL, {
                                 maxZoom: MAX_ZOOM,
                                 attribution: '© OpenStreetMap'
                             }).addTo(map);
-                        
+
                             // URL de la imagen de la bicicleta
                             const bikeIcon = L.icon({
                                 iconUrl: BIKE_ICON_URL,
@@ -61,22 +64,22 @@
                                 iconAnchor: ICON_ANCHOR,
                                 popupAnchor: POPUP_ANCHOR
                             });
-                        
+
                             let movingMarker = null; // Marcador en movimiento
                             let routeControl = null; // Control de enrutamiento
-                        
+
                             const search = window.location.search;
-                        
+
                             // Asegurarse de que hay parámetros en la URL después del '?'
                             let startLatitude, startLongitude, endLatitude, endLongitude;
                             if (search) {
                                 const urlParams = new URLSearchParams(search);
-                        
+
                                 startLatitude = urlParams.get('start_latitude');
                                 startLongitude = urlParams.get('start_longitude');
                                 endLatitude = urlParams.get('end_latitude');
                                 endLongitude = urlParams.get('end_longitude');
-                        
+
                                 if (startLatitude && startLongitude && endLatitude && endLongitude) {
                                     console.log('Start Latitude:', startLatitude);
                                     console.log('Start Longitude:', startLongitude);
@@ -86,7 +89,7 @@
                                     console.error('Error: Falta uno o más parámetros en la URL.');
                                 }
                             }
-                        
+
                             // Asegúrate de que las coordenadas no sean null antes de intentar usarlas
                             if (startLatitude && startLongitude && endLatitude && endLongitude) {
                                 // Array que define la ruta de movimiento [Inicio, Fin]
@@ -94,13 +97,13 @@
                                     L.latLng(startLatitude, startLongitude), // Inicio
                                     L.latLng(endLatitude, endLongitude) // Fin
                                 ];
-                        
+
                                 // Función para crear la ruta desde el array
                                 function createRouteFromArray(points) {
                                     if (routeControl) {
                                         map.removeControl(routeControl); // Elimina la ruta anterior si existe
                                     }
-                        
+
                                     // Crea una nueva ruta con los puntos del array
                                     routeControl = L.Routing.control({
                                         waypoints: points,
@@ -109,7 +112,7 @@
                                             return null; // No mostrar marcadores
                                         }
                                     }).addTo(map);
-                        
+
                                     // Iniciar el movimiento del marcador
                                     routeControl.on('routesfound', function(e) {
                                         if (e.routes.length > 0) {
@@ -118,31 +121,34 @@
                                         }
                                     });
                                 }
-                        
+
                                 // Función para mover el marcador a lo largo de la ruta
                                 function moveMarker(routeCoords) {
                                     if (movingMarker) {
                                         map.removeLayer(movingMarker); // Elimina el marcador de movimiento anterior
                                     }
-                        
+
                                     movingMarker = L.marker(routeCoords[0], {
                                         icon: bikeIcon
                                     }).addTo(map); // Crea el marcador en la posición inicial
-                        
+
                                     let step = 0;
-                        
+
                                     const interval = setInterval(() => {
                                         if (step >= routeCoords.length) {
                                             clearInterval(interval); // Detener el movimiento al final
                                             return;
                                         }
-                        
-                                        const { lat, lng } = routeCoords[step];
+
+                                        const {
+                                            lat,
+                                            lng
+                                        } = routeCoords[step];
                                         movingMarker.setLatLng([lat, lng]); // Mover el marcador a la nueva posición
                                         step++;
                                     }, STEP_TIME);
                                 }
-                        
+
                                 // Llama a la función para crear la ruta usando el array 'routePoints'
                                 createRouteFromArray(routePoints);
                             } else {
