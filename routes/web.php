@@ -12,11 +12,24 @@ use App\Http\Controllers\CatalogoController;
 
 Route::get('/',[catalogoController::class,"showCatalogo"]);
 
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/user/register/index', function () {
+    return view('auth.register');
+})->name('user.register');
+
+Route::controller(UserController::class)->group(function () {
+    
+    Route::post('/user/register/store', 'register_store')->name('user.register.store');
+    Route::get('/user/register/search_person', 'search_person')->name('user.register.search_person');
+
+});
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
 
     Route::controller(UserController::class)->group(function () {
-
+    
         Route::get('/dashboard', 'dashboard')->name('dashboard');
 
         Route::get('/user/index', 'index')->name('user.index');

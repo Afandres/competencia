@@ -41,9 +41,9 @@
                                         Log in
                                     </a>
 
-                                    @if (Route::has('register'))
+                                    @if (Route::has('user.register'))
                                         <a
-                                            href="{{ route('register') }}"
+                                            href="{{ route('user.register') }}"
                                             class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                                         >
                                             Register
