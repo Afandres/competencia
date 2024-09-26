@@ -39,17 +39,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: #5A9B3A;">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: #287d38;">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="{{ route('dashboard') }}" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -93,26 +90,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4"    >
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
-                <i class="fa-solid fa-person-biking"></i>
-                <span class="brand-text font-weight-light">SENABIC</span>
+            <a href="{{ route('dashboard') }}" style="text-decoration: none;" class="brand-link">
+                <i style="margin-left:40px" class="fa-solid fa-person-biking"></i>
+                <span class="brand-text font-weight-light" >SENABIC</span>
             </a>
             <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block"></a>
-                    </div>
+          <!-- Sidebar -->
+          <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <!-- Si tienes una imagen de usuario, descomenta la línea siguiente y proporciona la ruta -->
+                    <!-- <img src="{{ asset('ruta/a/imagen.jpg') }}" class="img-circle elevation-2" alt="User Image"> -->
                 </div>
+                <div class="info">
+                  <a href="#" class="d-block" style="text-decoration: none;">Usuario: {{ Auth::user()->name }}</a>
+                        @if(Auth::user()->roles->isNotEmpty())
+                          <a href="#" class="d-block" style="text-decoration: none;"> Rol: {{ Auth::user()->roles->first()->name }}</a>
+                           
+                        @else
+                            Sin rol asignado
+                        @endif
+                    </span>
+                </div>
+            </div>
+          </div>
 
-            </div>
-            <div class="info">
-                <a href="#" class="d-block"></a>
-            </div>
+
 
             <!-- SidebarSearch Form -->
             <div class="form-inline">
@@ -207,11 +211,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <p>Ganancias</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{route('rental.earnings.pdf')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Reporte</p>
+                  </a>
+                </li>
               </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-                <i class="nav-icon fa-solid fa-bicycle"></i>
+              <i class="fa-brands fa-watchman-monitoring"></i>
               <p>
                 Monitoreo
                 <i class="right fas fa-angle-left"></i>
@@ -334,34 +344,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- /.control-sidebar -->
 
 <!-- Main Footer -->
-<footer class="bg-green-field text-white text-center py-4">
-    <div class="container">
-        <h5>Servicio Nacional de Aprendizaje - SENA</h5>
-        <p>
-            Formamos profesionales competentes para el desarrollo del país.
-            <br> Cali, Colombia
-        </p>
-        <div class="social-icons mb-3">
-            <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
-        </div>
-        <p class="mt-3">&copy; 2024 SENA. Todos los derechos reservados.</p>
-    </div>
+<footer class="bg-green-field text-white text-center py-4" style="margin-left: 50px">
+  <div class="container d-flex flex-column align-items-center justify-content-center">
+      <h5>Servicio Nacional de Aprendizaje - SENA</h5>
+      <p>
+          Formamos profesionales competentes para el desarrollo del país.
+          <br> Cali, Colombia
+      </p>
+      <div class="social-icons mb-3 d-flex justify-content-center">
+          <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p class="mt-3">&copy; 2024 SENA. Todos los derechos reservados.</p>
+  </div>
 </footer>
 
 <style>
-    footer {
-        background-color: #5A9B3A; /* Color verde de campo */
-    }
-    .social-icons a {
-        font-size: 20px; /* Tamaño de íconos */
-        transition: color 0.3s; /* Efecto de transición */
-    }
-    .social-icons a:hover {
-        color: #FFCC00; /* Color amarillo para el hover */
-    }
+  footer {
+      background-color: #287d38; /* Color verde de campo */
+  }
+  .social-icons {
+      display: flex; /* Usar flexbox para centrar los íconos */
+      justify-content: center; /* Centrar horizontalmente */
+  }
+  .social-icons a {
+      font-size: 20px; /* Tamaño de íconos */
+      transition: color 0.3s; /* Efecto de transición */
+  }
+  .social-icons a:hover {
+      color: #FFCC00; /* Color amarillo para el hover */
+  }
 </style>
+
 
 </div>
 </div>

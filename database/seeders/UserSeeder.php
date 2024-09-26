@@ -16,6 +16,16 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $role_admin = Role::updateOrCreate(['name' => 'admin'], [
+          'guard_name' => 'web'
+        ]);
+        $role_aprendiz = Role::updateOrCreate(['name' => 'aprendiz'], [
+          'guard_name' => 'web'
+        ]);
+        $role_funcionario = Role::updateOrCreate(['name' => 'funcionario'], [
+          'guard_name' => 'web'
+        ]);
+
         $person = Person::updateOrCreate(['document_number' => '1234567890'], [
             'name' => 'Admin',
             'document_type' => 'Cédula de ciudadanía',
@@ -29,13 +39,37 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin123')
           ]);
+        $user->assignRole($role_admin);
 
-        $role = Role::updateOrCreate(['name' => 'admin'], [
-        'guard_name' => 'web'
+        $person = Person::updateOrCreate(['document_number' => '12345'], [
+          'name' => 'Aprendiz Prueba',
+          'document_type' => 'Cédula de ciudadanía',
+          'telephone' => '3102443465',
+          'email' => 'aprendiz@gmail.com',
         ]);
+        $person_id = $person->id;
 
+        $user = User::updateOrCreate(['person_id' => $person_id], [
+            'name' => 'Aprendiz Prueba',
+            'email' => 'aprendiz@gmail.com',
+            'password' => Hash::make('aprendiz123')
+          ]);
+        $user->assignRole($role_aprendiz);
 
-        $user->assignRole($role);
+        $person = Person::updateOrCreate(['document_number' => '123456'], [
+          'name' => 'Funcionario Prueba',
+          'document_type' => 'Cédula de ciudadanía',
+          'telephone' => '3102443465',
+          'email' => 'funcionario@gmail.com',
+        ]);
+        $person_id = $person->id;
+
+        $user = User::updateOrCreate(['person_id' => $person_id], [
+            'name' => 'Funcionario Prueba',
+            'email' => 'funcionario@gmail.com',
+            'password' => Hash::make('funcionario123')
+          ]);
+        $user->assignRole($role_funcionario);
 
     }
 

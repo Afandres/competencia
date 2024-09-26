@@ -5,17 +5,15 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AcademiController;
 use App\Http\Controllers\ApprenticeController;
 use App\Http\Controllers\monitoringController;
-
 use App\Http\Controllers\BicycleController;
 use App\Http\Controllers\eventController;
 use App\Http\Controllers\CatalogoController;
 
-
-
-
-
 Route::get('/bysicle/show',[catalogoController::class,"bicycle_index"])->name("catalogoBisis");
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/user/register/index', function () {
     return view('auth.register');
@@ -91,11 +89,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::get('/rental/invoices', 'rental_invoices')->name('rental.invoices');
 
         Route::get('/rental/earnings', 'monthly_earnings')->name('rental.earnings');
+        Route::get('/rental/earnings-pdf', 'monthly_earnings_pdf')->name('rental.earnings.pdf');
 
 
     });
-
-
 
     Route::controller(eventController::class)->group(function () {
         Route::get('/event/index', 'event_index')->name('event');
@@ -103,10 +100,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::post('/event/store', 'event_store')->name('eventStore');
         Route::get('/add-ubicacion/{id}', [eventController::class, 'ubicacion'])->name('addUbicacion');
         // Ruta para mostrar el formulario de actualización de imagen (GET)
-Route::get('/events/{id}/form-update-image', [EventController::class, 'showUpdateImageForm'])->name('events.formUpdateImage');
+        Route::get('/events/{id}/form-update-image', [EventController::class, 'showUpdateImageForm'])->name('events.formUpdateImage');
 
-// Ruta para procesar el formulario de actualización de imagen (POST)
-Route::post('/events/{id}/update-image', [EventController::class, 'updateImage'])->name('events.updateImage');
+        // Ruta para procesar el formulario de actualización de imagen (POST)
+        Route::post('/events/{id}/update-image', [EventController::class, 'updateImage'])->name('events.updateImage');
         Route::post('/events/{id}/update-image', [EventController::class, 'updateImage'])->name('events.updateImage');
         Route::post('/event/addUbicacionn', 'event_store_ubicacion')->name('addUbicacionStore');
         Route::get('/event/edit/{id}', 'event_edit')->name('eventEdit');

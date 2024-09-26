@@ -6,6 +6,7 @@ use App\Models\Bicycle;
 use App\Models\Rental;
 use Carbon\Carbon;
 use DB;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -228,6 +229,32 @@ class BicycleController extends Controller
             ->get();
 
         return view('rents.bicycle.earnings', compact('earnings'));
+    }
+
+    public function monthly_earnings_pdf(Request $request)
+    {
+        // Obtener las ganancias mensuales con los alquileres detallados
+        $earnings = Rental::selectRaw('MONTH(date) as month, SUM(price) as total')
+        ->where('state', 'Devuelta')
+        ->with(['bicycle', 'person']) // Asegúrate de que se carguen las relaciones
+        ->groupBy('month')
+        ->orderBy('month')
+        ->get();
+
+        // Obtener alquileres por mes
+        $rentalsByMonth = Rental::where('state', 'Devuelta')
+            ->with(['bicycle', 'person']) // Relacionar bicicleta y persona
+            ->orderByRaw('MONTH(date)')
+            ->get()
+            ->groupBy(function($rental) {
+                return Carbon::parse($rental->date)->format('F'); // Agrupar por nombre del mes
+            });
+
+        // Cargar la vista y pasar los datos
+        $pdf = PDF::loadView('rents.bicycle.earnings_pdf', compact('earnings', 'rentalsByMonth'));
+
+        // Descargar el PDF
+        return $pdf->download('earnings_report.pdf');
     }
 
     
