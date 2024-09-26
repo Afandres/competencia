@@ -286,6 +286,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('monitoringEvent')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Eventos</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
               <i class="nav-icon fa-solid fa-right-from-bracket"></i>
               <p>
@@ -303,6 +309,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{route('rental.index')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Alquilar</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('monitoringEvent')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Eventos</p>
             </a>
           </li>
           <li class="nav-item">
