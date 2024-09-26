@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('brand');
             $table->string('colors');
             $table->enum('state',['Activa','Inactiva']);
-            $table->integer('rental_price');
             $table->timestamps();
         });
     }

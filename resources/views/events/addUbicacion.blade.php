@@ -4,12 +4,11 @@
     <div class="container mt-5" style="max-width: 600px;">
         <div class="card">
             <div class="card-header">
-                <h2 class="mb-0">Registrar una hubicacion para el elemento</h2>
+                <h2 class="mb-0">Registrar una ubicacion para el elemento</h2>
             </div>
             <div class="card-body">
                 <form action="{{ route('addUbicacionStore') }}" method="POST" >
                     @csrf
-
 
                     <div class="mb-3 row"  hidden>
                         <label for="startLat" class="col-sm-2 col-form-label ">id</label>

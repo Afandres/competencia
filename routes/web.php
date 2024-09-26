@@ -83,6 +83,19 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
         Route::get('/bicycle/edit/{id}', 'bicycle_edit')->name('bicycle.edit');
         Route::put('/bicycle/update/{id}', [BicycleController::class, 'bicycle_update'])->name('bicycle.update');
         Route::delete('/bicycle/destroy/{id}', 'bicycle_destroy')->name('bicycle.destroy');
+
+        Route::get('/rental/index', 'rental_index')->name('rental.index');
+        Route::get('/rental/create/{id}', 'rental_create')->name('rental.create');
+        Route::post('/rental/store', 'rental_store')->name('rental.store');
+
+        Route::get('/rental/devolution/{id}', 'rental_devolution')->name('rental.devolution');
+        Route::post('/rental/devolution/store', 'rental_devolution_store')->name('rental.devolution.store');
+
+        Route::get('/rental/invoices', 'rental_invoices')->name('rental.invoices');
+
+        Route::get('/rental/earnings', 'monthly_earnings')->name('rental.earnings');
+
+
     });
 
 

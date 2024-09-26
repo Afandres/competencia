@@ -184,7 +184,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="nav-item">
                   <a href="{{route('bicycle.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Administrar bisis</p>
+                    <p>Administrar Bicicleta</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('rental.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Alquilar</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('rental.invoices')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Facturas</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('rental.earnings')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Ganancias</p>
                   </a>
                 </li>
               </ul>
@@ -201,13 +219,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="nav-item">
                   <a href="{{route('monitoringBisicles')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>bisis activas</p>
+                    <p>Bicicletas Activas</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{route('monitoringEvent')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>eventos</p>
+                    <p>Eventos</p>
                   </a>
                 </li>
               </ul>
@@ -236,45 +254,53 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                Cerrar sesión
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
+              <i class="nav-icon fa-solid fa-right-from-bracket"></i>
+              <p>
+                Cerrar Sesión
+              </p>
             </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
           </li>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+        </li>
           @endrole
           @role('aprendiz')
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Alquilar Bicicleta
-              </p>
+            <a href="{{route('rental.index')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Alquilar</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                Cerrar sesión
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
+              <i class="nav-icon fa-solid fa-right-from-bracket"></i>
+              <p>
+                Cerrar Sesión
+              </p>
             </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
           </li>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+        </li>
           @endrole
           @role('funcionario')
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Alquilar Bicicleta
-              </p>
+            <a href="{{route('rental.index')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Alquilar</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                Cerrar sesión
-            </a>
+              <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
+                <i class="nav-icon fa-solid fa-right-from-bracket"></i>
+                <p>
+                  Cerrar Sesión
+                </p>
+              </a>
+            </li>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
@@ -323,8 +349,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '{{ session('success') }}',
+            showConfirmButton: true,
+            timer: 1500,
+            customClass: {
+                popup: 'my-custom-popup-class',
+            },
+        });
+    </script>
+@endif
+
+@if(session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: {!! json_encode(session('error')) !!},
+            showConfirmButton: true,
+            timer: 15000,
+            customClass: {
+                popup: 'my-custom-popup-class',
+            },
+        });
+    </script>
+@endif
 </body>
 
 </html>

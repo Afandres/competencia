@@ -1,16 +1,3 @@
-<x-guest-layout>
-    <div class="pt-4 bg-gray-100">
-        <div class="min-h-screen flex flex-col items-center pt-6 sm:pt-0">
-            <div>
-                <x-authentication-card-logo />
-            </div>
-
-            <div class="w-full sm:max-w-2xl mt-6 p-6 bg-white shadow-md overflow-hidden sm:rounded-lg prose">
-                {!! $terms !!}
-            </div>
-        </div>
-    </div>
-</x-guest-layout>
 @extends('layouts.master')
 
 @section('content')
@@ -24,8 +11,9 @@
                 <strong>Colores:</strong> {{ $bicycle->colors }}<br>
                 <strong>Estado:</strong> {{ $bicycle->state }}<br>
             </p>
-            <form action="/program/store" method="POST">
+            <form action="{{ route('rental.store') }}" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="bicycle_id" value="{{ $bicycle->id }}">
                 <div class="form-group">
                     <label for="start_time">Hora de Salida</label>
                     <input type="time" name="start_time" class="form-control" required>

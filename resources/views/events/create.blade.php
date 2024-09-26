@@ -47,7 +47,7 @@
                         </div>
                     </div>
 
-                   <input type="submit" value="crear" class="btn btn-primary">
+                   <input type="submit" value="Crear" class="btn btn-primary">
 
             </div>
         </div>
