@@ -14,7 +14,7 @@ use App\Http\Controllers\CatalogoController;
 
 
 
-Route::get('/bysicle/show',[catalogoController::class,"bicycle_index"])->name("catalogoBisis");
+Route::get('/',[catalogoController::class,"bicycle_index"])->name("catalogoBisis");
 
 
 Route::get('/user/register/index', function () {
