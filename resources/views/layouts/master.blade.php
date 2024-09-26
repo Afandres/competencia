@@ -172,14 +172,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
-         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="nav-icon fa-solid fa-wrench"></i>
-              <p>
-                Parametros
-              </p>
-            </a>
-          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon fa-solid fa-bicycle"></i>
