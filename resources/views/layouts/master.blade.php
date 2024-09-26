@@ -27,6 +27,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
    <!-- CSS adicional -->
    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+   <!-- Font Awesome Icons -->
+<link rel="stylesheet" href="{{ asset('AdminLTE/plugins/fontawesome-free/css/all.min.css') }}">
+<script src="https://kit.fontawesome.com/dcb1bbced2.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -256,6 +260,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 Alquilar Bicicleta
               </p>
             </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Cerrar sesión
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+          </li>
+          @endrole
+          @role('funcionario')
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Alquilar Bicicleta
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Cerrar sesión
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
           </li>
           @endrole
         </ul>
