@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SENABIC</title>
+  <title>BICICEFA</title>
 
    <!-- Google Font: Source Sans Pro -->
    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -91,7 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Brand Logo -->
             <a href="{{ route('dashboard') }}" style="text-decoration: none;" class="brand-link">
                 <i style="margin-left:40px" class="fa-solid fa-person-biking"></i>
-                <span class="brand-text font-weight-light" >SENABIC</span>
+                <span class="brand-text font-weight-light" >BICICEFA</span>
             </a>
             <!-- Sidebar -->
           <!-- Sidebar -->
@@ -106,7 +106,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <a href="#" class="d-block" style="text-decoration: none;">Usuario: {{ Auth::user()->name }}</a>
                         @if(Auth::user()->roles->isNotEmpty())
                           <a href="#" class="d-block" style="text-decoration: none;"> Rol: {{ Auth::user()->roles->first()->name }}</a>
-                           
+
                         @else
                             Sin rol asignado
                         @endif
@@ -360,7 +360,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <h5>Servicio Nacional de Aprendizaje - SENA</h5>
       <p>
           Formamos profesionales competentes para el desarrollo del país.
-          <br> Cali, Colombia
+          <br> Campoalegre, Colombia
       </p>
       <div class="social-icons mb-3 d-flex justify-content-center">
           <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
