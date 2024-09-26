@@ -13,6 +13,8 @@ class Event extends Model
         'name',
         'description',
         'date',
+        'start_time',
+        'end_time',
         'start_latitude',
         'start_longitude',
         'end_latitude',

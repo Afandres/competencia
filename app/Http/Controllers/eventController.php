@@ -36,7 +36,6 @@ class eventController extends Controller
      */
     public function event_store(Request $request)
 {
-
     // Crear un nuevo evento con los datos validados
     Event::create([
         'name' => $request->name,
